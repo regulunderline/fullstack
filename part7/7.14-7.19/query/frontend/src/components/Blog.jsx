@@ -29,11 +29,18 @@ const Blog = () => {
   const commentMutation = useMutation({
     mutationFn: blogService.comment, 
     onSuccess: (response) => {
-      queryClient.setQueryData(['blog'], { ...response, user: blog.user })
-      dispatch({ notification: { message: `you commented a blog ${response.title} by ${response.author}`, type: 'success' } })
-      setTimeout(() => {
-        dispatch({notification: null})
-      }, 5000)
+      if (response.status === 401) {
+        dispatch({ notification: { message: `log in to comment`, type: 'error' } })
+        setTimeout(() => {
+          dispatch({notification: null})
+        }, 5000)
+      } else {
+        queryClient.setQueryData(['blog'], { ...response, user: blog.user })
+        dispatch({ notification: { message: `you commented a blog ${response.title} by ${response.author}`, type: 'success' } })
+        setTimeout(() => {
+          dispatch({notification: null})
+        }, 5000)
+      }
     },
     onError: error => {
       console.log(error)

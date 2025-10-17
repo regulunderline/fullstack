@@ -11,7 +11,7 @@ import loginService from './services/login'
 import { useNotificationDispatch } from './NotificationContext'
 import { useUserValue, useUserDispatch } from './UserContext'
 import {
-  Routes, Route, Navigate, Link, useMatch, useNavigate
+  Routes, Route, Link, useNavigate
 } from 'react-router-dom'
 
 const Redirect = ({ to }) => {
@@ -56,11 +56,7 @@ const App = () => {
       const user = JSON.parse(loggedUserJSON)
       dispatchUser({ user })
       blogService.setToken(user.token)
-    } else {
-      return(
-        navigate('/login')
-      )
-    }
+    } 
   }, [])
 
   const result = useQuery({
@@ -154,9 +150,9 @@ const App = () => {
   const blogForm = () => {
     return (
       <div>
-        <Togglable buttonLabel = "create new blog" ref={blogFormRef}>
-          {user && <BlogForm user={user}/>}
-        </Togglable>
+        {user && <Togglable buttonLabel = "create new blog" ref={blogFormRef}>
+          <BlogForm user={user}/>
+        </Togglable>}
         {blogs.toSorted((a,b) => b.likes - a.likes).map(blog => 
           <div key={blog.id} style={blogStyle}><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></div>)}
       </div>
@@ -172,10 +168,6 @@ const App = () => {
         <Route path = "/users" element = {<div><Users /></div>}/>
         <Route path = "/users/:id" element = {<div><User /></div>}/>
         <Route path = "/blogs/:id" element = {<div><Blog /></div>}/>
-        
-        {/* <Route path = "/anecdotes/:id" element = {<Anecdote anecdote={anecdote} />}/>
-        <Route path = "/about" element = {<About />}/>
-        <Route path = "/create" element = {<CreateNew addNew={addNew} newNotification={newNotification} />}/> */}
       </Routes>
     </div>
   )
