@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { NewPatientSchema } from './utils'
+import { NewPatientSchema } from './utils';
 
 export enum Gender {
   male = "male",

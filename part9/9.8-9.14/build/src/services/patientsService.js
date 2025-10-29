@@ -20,6 +20,7 @@ const getPatients = () => {
     return patients_1.default;
 };
 const getNonSensitivePatients = () => {
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
     return patients_1.default.map((_a) => {
         var { ssn } = _a, patient = __rest(_a, ["ssn"]);
         return patient;

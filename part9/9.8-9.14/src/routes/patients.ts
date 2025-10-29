@@ -1,5 +1,5 @@
 import express from 'express';
-import { Response, Request, NextFunction } from 'express'
+import { Response, Request, NextFunction } from 'express';
 import { NewPatient, NonSensitivePatient, Patient } from "../types";
 import { NewPatientSchema } from '../utils';
 import z from 'zod';
@@ -34,6 +34,6 @@ router.post('/', newPatientParser, (req: Request<unknown, unknown, NewPatient>, 
   res.json(addedPatient);
 });
 
-router.use(errorMiddleware)
+router.use(errorMiddleware);
 
 export default router;

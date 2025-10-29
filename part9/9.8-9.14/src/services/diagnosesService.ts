@@ -1,11 +1,11 @@
-import diagnoses from '../../data/diagnoses'
+import diagnoses from '../../data/diagnoses';
 
-import { Diagnosis } from '../types'
+import { Diagnosis } from '../types';
 
 const getDiagnoses = () : Diagnosis[] => {
-  return diagnoses
-}
+  return diagnoses;
+};
 
 export default {
   getDiagnoses
-}
+};

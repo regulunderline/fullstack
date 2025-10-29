@@ -1,13 +1,14 @@
-import patients from '../../data/patients'
-import { v1 as uuid } from 'uuid'
+import patients from '../../data/patients';
+import { v1 as uuid } from 'uuid';
 
-import { Patient, NonSensitivePatient, NewPatient } from '../types'
+import { Patient, NonSensitivePatient, NewPatient } from '../types';
 
 const getPatients = () : Patient[] => {
-  return patients
-}
+  return patients;
+};
 
 const getNonSensitivePatients = (): NonSensitivePatient[] => {
+  //eslint-disable-next-line @typescript-eslint/no-unused-vars
   return patients.map(({ ssn, ...patient }) => patient);
 };
 
@@ -25,4 +26,4 @@ export default {
   getPatients,
   getNonSensitivePatients,
   addPatient
-}
+};
